@@ -4,16 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cabinet.View"
+      xmlns:vm="clr-namespace:Cabinet.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminPage">
-      <!--xmlns:vm="clr-namespace:Cabinet.ViewModel"-->
-
-    <!--Administratorul prelucreaza informatile despre medici, preturi si interventii, precum
-        si pentru conturile de utilizatori.-->
-    <!--<Page.DataContext>
-        
-    </Page.DataContext>-->
+      Title="AdminPage">
+    <Page.DataContext>
+        <vm:AdminViewModel/>
+    </Page.DataContext>
     
     <Grid Background="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="10" Padding="10">
@@ -34,6 +31,15 @@
                                 <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button Content="Add user" Command="{Binding AddUserCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                            <Button Content="Edit user" Command="{Binding EditUserCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
                 
@@ -51,6 +57,15 @@
                                 <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button Content="Add medic" Command="{Binding AddMedicCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                            <Button Content="Edit medic" Command="{Binding EditMedicCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
 
@@ -70,6 +85,15 @@
                                 <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button Content="Add price" Command="{Binding AddPriceCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                            <Button Content="Edit price" Command="{Binding EditPriceCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
 
@@ -91,6 +115,15 @@
                                 <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button Content="Add operation" Command="{Binding AddOperationCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                            <Button Content="Edit operation" Command="{Binding EditOperationCommand}" FontSize="13"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    Margin="5" Padding="5" Width="120" Height="30"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
             </TabControl>
