@@ -1,0 +1,42 @@
+﻿<Page x:Class="Cabinet.View.EditPatientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cabinet.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditPatientPage">
+
+    <Grid Background="White">
+        <StackPanel>
+            <Grid>
+                <Label x:Name="AddPatientLabel" Content="Add patient" HorizontalAlignment="Center" 
+                   FontSize="30" FontWeight="Bold" Margin="0,0,0,20" Visibility="Hidden"/>
+                <Label x:Name="EditPatientLabel" Content="Edit patient" HorizontalAlignment="Center" 
+                   FontSize="30" FontWeight="Bold" Margin="0,0,0,20" Visibility="Hidden"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel HorizontalAlignment="Right">
+                    <Label Content="Name:" HorizontalAlignment="Center" Margin="5,10"/>
+                    <Label Content="Is active:" HorizontalAlignment="Center" Margin="5,10"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBox Width="100" Height="20" Margin="5,15,5,10" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Width="100" Height="20" Margin="5,15" Text="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </Grid>
+
+            <Button Content="Save" HorizontalAlignment="Center" FontSize="25" Margin="0,40,0,0"
+                Width="100" Height="40" FontWeight="DemiBold" Command="{Binding SaveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -15,17 +15,14 @@ using System.Windows.Shapes;
 
 namespace Cabinet.View
 {
-    public partial class MedicPage : Page
+    /// <summary>
+    /// Interaction logic for EditOperationsPage.xaml
+    /// </summary>
+    public partial class EditOperationsPage : Page
     {
-        private int MedicId { get; set; }
-        public MedicPage()
+        public EditOperationsPage()
         {
             InitializeComponent();
         }
-
-        public MedicPage(int medicId)
-        {
-            InitializeComponent();
-            MedicId = medicId;
-        }}
+    }
 }
