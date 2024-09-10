@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cabinet.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Cabinet.View
         public EditPatientPage()
         {
             InitializeComponent();
+        }
+
+        public EditPatientPage(Patient patient)
+        {
+            InitializeComponent();
+            DataContext = new EditPatientViewModel(patient);
         }
     }
 }

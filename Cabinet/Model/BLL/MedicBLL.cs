@@ -1,4 +1,5 @@
-﻿using Cabinet.Model.Entities;
+﻿using Cabinet.Model.DAL;
+using Cabinet.Model.Entities;
 using System.Collections.ObjectModel;
 
 namespace Cabinet.Model.BLL
@@ -14,7 +15,12 @@ namespace Cabinet.Model.BLL
 
         public ObservableCollection<Medic> GetMedics()
         {
-            return medicDAL.GetMedics();
+            return new ObservableCollection<Medic>(medicDAL.GetMedics());
+        }
+
+        public Medic GetMedicByUId(int uId)
+        {
+            return medicDAL.GetMedicByUId(uId);
         }
 
         public void AddMedic(Medic medic)

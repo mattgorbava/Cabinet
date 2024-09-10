@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cabinet.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,15 @@ namespace Cabinet.View
 {
     public partial class MedicPage : Page
     {
-        private int MedicId { get; set; }
         public MedicPage()
         {
             InitializeComponent();
         }
 
-        public MedicPage(int medicId)
+        public MedicPage(int userId)
         {
             InitializeComponent();
-            MedicId = medicId;
-        }}
+            DataContext = new MedicViewModel(userId);
+        }
+    }
 }

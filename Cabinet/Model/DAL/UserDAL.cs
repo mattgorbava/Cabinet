@@ -48,7 +48,6 @@ namespace Cabinet.Model.DAL
                 command.Parameters.AddWithValue("@Username", user.Username);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
-                command.Parameters.AddWithValue("@IsActive", user.IsActive);
                 if (SqlValidator.ValidateCommand(command))
                     command.ExecuteNonQuery();
             }

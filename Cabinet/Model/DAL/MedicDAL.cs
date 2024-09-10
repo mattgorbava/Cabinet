@@ -1,5 +1,6 @@
 ﻿using Cabinet.Model.Entities;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System.Net;
 
 namespace Cabinet.Model.DAL
@@ -47,7 +48,6 @@ namespace Cabinet.Model.DAL
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Name", medic.Name);
                 command.Parameters.AddWithValue("@UserId", medic.UserId);
-                command.Parameters.AddWithValue("@IsActive", medic.IsActive);
                 if (SqlValidator.ValidateCommand(command))
                     command.ExecuteNonQuery();
             }
@@ -84,6 +84,35 @@ namespace Cabinet.Model.DAL
             {
                 connection.Close();
             }
+        }
+
+        public Medic GetMedicByUId(int uId)
+        {
+            var connection = DbHelper.Connection;
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetMedicByUId", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@UserId", uId);
+                SqlDataReader reader;
+                if (SqlValidator.ValidateCommand(command))
+                    reader = command.ExecuteReader();
+                else return null;
+                while (reader.Read())
+                {
+                    Medic medic = new Medic();
+                    medic.MedicId = reader.GetInt32(0);
+                    medic.Name = reader.GetString(1);
+                    medic.UserId = reader.GetInt32(2);
+                    medic.IsActive = reader.GetBoolean(3);
+                    return medic;
+                }
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally { connection.Close(); }
+            return null;
         }
     }
 }

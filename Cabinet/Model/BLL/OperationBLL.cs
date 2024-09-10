@@ -1,4 +1,5 @@
-﻿using Cabinet.Model.Entities;
+﻿using Cabinet.Model.DAL;
+using Cabinet.Model.Entities;
 using System.Collections.ObjectModel;
 
 namespace Cabinet.Model.BLL
@@ -14,7 +15,7 @@ namespace Cabinet.Model.BLL
 
         public ObservableCollection<Operation> GetOperations()
         {
-            return operationDAL.GetOperations();
+            return new ObservableCollection<Operation>(operationDAL.GetOperations());
         }
 
         public void AddOperation(Operation operation)

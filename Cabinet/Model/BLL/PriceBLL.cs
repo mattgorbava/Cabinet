@@ -1,4 +1,5 @@
-﻿using Cabinet.Model.Entities;
+﻿using Cabinet.Model.DAL;
+using Cabinet.Model.Entities;
 using System.Collections.ObjectModel;
 
 namespace Cabinet.Model.BLL
@@ -14,7 +15,7 @@ namespace Cabinet.Model.BLL
 
         public ObservableCollection<Price> GetPrices()
         {
-            return priceDAL.GetPrices();
+            return new ObservableCollection<Price>(priceDAL.GetPrices());
         }
 
         public void AddPrice(Price price)

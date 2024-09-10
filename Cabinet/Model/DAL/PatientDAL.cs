@@ -3,25 +3,26 @@ using Microsoft.Data.SqlClient;
 
 namespace Cabinet.Model.DAL
 {
-    internal class PriceDAL
+    class PatientDAL
     {
-        public List<Price> GetPrices()
+        public List<Patient> GetPatients()
         {
+            List<Patient> patients = new List<Patient>();
             var connection = DbHelper.Connection;
-            List<Price> prices = new List<Price>();
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SelectPrices", connection);
+                SqlCommand command = new SqlCommand("SelectPatients", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                while (reader.Read()) 
                 {
-                    Price price = new Price();
-                    price.PriceId = reader.GetInt32(0);
-                    price.Value = reader.GetDecimal(1);
-                    price.IsActive = reader.GetBoolean(2);
-                    prices.Add(price);
+                    Patient patient = new Patient();
+                    patient.PatientId = reader.GetInt32(0);
+                    patient.Name = reader.GetString(1);
+                    patient.MedicId = reader.GetInt32(2);
+                    patient.IsActive = reader.GetBoolean(3);
+                    patients.Add(patient);
                 }
             }
             catch (Exception ex)
@@ -32,18 +33,19 @@ namespace Cabinet.Model.DAL
             {
                 connection.Close();
             }
-            return prices;
+            return patients;
         }
 
-        public void AddPrice(Price price)
+        public void AddPatient(Patient patient)
         {
             var connection = DbHelper.Connection;
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("AddPrice", connection);
+                SqlCommand command = new SqlCommand("AddPatient", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Value", price.Value);
+                command.Parameters.AddWithValue("@Name", patient.Name);
+                command.Parameters.AddWithValue("@MedicId", patient.MedicId);
                 if (SqlValidator.ValidateCommand(command))
                     command.ExecuteNonQuery();
             }
@@ -57,17 +59,18 @@ namespace Cabinet.Model.DAL
             }
         }
 
-        public void EditPrice(Price price)
+        public void EditPatient(Patient patient)
         {
             var connection = DbHelper.Connection;
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("EditPrice", connection);
+                SqlCommand command = new SqlCommand("EditPatient", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@PriceId", price.PriceId);
-                command.Parameters.AddWithValue("@Value", price.Value);
-                command.Parameters.AddWithValue("@IsActive", price.IsActive);
+                command.Parameters.AddWithValue("@PatientId", patient.PatientId);
+                command.Parameters.AddWithValue("@Name", patient.Name);
+                command.Parameters.AddWithValue("@MedicId", patient.MedicId);
+                command.Parameters.AddWithValue("@IsActive", patient.IsActive);
                 if (SqlValidator.ValidateCommand(command))
                     command.ExecuteNonQuery();
             }

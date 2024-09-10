@@ -51,7 +51,6 @@ namespace Cabinet.Model.DAL
                 command.Parameters.AddWithValue("@MedicId", operation.MedicId);
                 command.Parameters.AddWithValue("@PatientId", operation.PatientId);
                 command.Parameters.AddWithValue("@PriceId", operation.PriceId);
-                command.Parameters.AddWithValue("@IsActive", operation.IsActive);
                 if (SqlValidator.ValidateCommand(command))
                     command.ExecuteNonQuery();
             }

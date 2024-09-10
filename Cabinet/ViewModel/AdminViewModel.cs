@@ -3,6 +3,7 @@ using Cabinet.MVVM;
 using Cabinet.View;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Cabinet.Model.BLL;
 
 namespace Cabinet.ViewModel
 {

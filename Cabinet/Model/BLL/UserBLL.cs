@@ -1,4 +1,5 @@
-﻿using Cabinet.Model.Entities;
+﻿using Cabinet.Model.DAL;
+using Cabinet.Model.Entities;
 using System.Collections.ObjectModel;
 
 namespace Cabinet.Model.BLL
@@ -14,7 +15,7 @@ namespace Cabinet.Model.BLL
 
         public ObservableCollection<User> GetUsers()
         {
-            return userDAL.GetUsers();
+            return new ObservableCollection<User>(userDAL.GetUsers());
         }
 
         public void AddUser(User user)
