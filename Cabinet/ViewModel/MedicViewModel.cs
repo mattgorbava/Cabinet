@@ -28,12 +28,12 @@ namespace Cabinet.ViewModel
         public MedicViewModel(int userId)
         {
             ConnectedMedic = medicBLL.GetMedicByUId(userId);
-            Patients = new ObservableCollection<Medic>(patientBLL.GetPatients());
-            Appointments = new ObservableCollection<Appointment>(appointmentBLL.GetAppointments());
+            Patients = patientBLL.GetPatients();
+            Appointments = appointmentBLL.GetAppointments();
 
             AddPatientCommand = new RelayCommand<object>(AddPatient);
-            EditPatientCommand = new RelayCommand<object>(EditPatient);
-            AddAppointmentCommand = new RelayCommand<object>(AddAppointment);
+            EditPatientCommand = new RelayCommand<object>(EditPatient, canExecute => SelectedPatient != null);
+            AddAppointmentCommand = new RelayCommand<object>(AddAppointment, canExecute => SelectedPatient != null);
             EditAppointmentCommand = new RelayCommand<object>(EditAppointment);
         }
 
@@ -62,7 +62,6 @@ namespace Cabinet.ViewModel
                 return;
             }
             currentPage.NavigationService?.Navigate(new EditAppointmentPage(ConnectedMedic, SelectedPatient)); 
-            // adauga buton de Add appointment la pacienti, medicul este cel care este logat si pacientul este cel selectat
         }
 
         private void EditAppointment(object obj)

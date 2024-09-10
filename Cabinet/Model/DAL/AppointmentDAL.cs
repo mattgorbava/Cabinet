@@ -6,9 +6,9 @@ namespace Cabinet.Model.DAL
 {
     class AppointmentDAL
     {
-        public ObservableCollection<Appointment> GetAppointments()
+        public List<Appointment> GetAppointments()
         {
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            List<Appointment> appointments = new List<Appointment>();
             var connection = DbHelper.Connection;
             try
             {

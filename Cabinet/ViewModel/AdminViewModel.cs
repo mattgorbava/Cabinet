@@ -37,10 +37,10 @@ namespace Cabinet.ViewModel
 
         public AdminViewModel()
         {
-            Users = new ObservableCollection<User>(userBLL.GetUsers());
-            Medics = new ObservableCollection<Medic>(medicBLL.GetMedics());
-            Prices = new ObservableCollection<Price>(medicBLL.GetPrices());
-            Operations = new ObservableCollection<Operation>(operationBLL.GetOperations());
+            Users = userBLL.GetUsers();
+            Medics = medicBLL.GetMedics();
+            Prices = priceBLL.GetPrices();
+            Operations = operationBLL.GetOperations();
 
             AddUserCommand = new RelayCommand<object>(AddUser);
             EditUserCommand = new RelayCommand<object>(EditUser, canExecute => SelectedUser != null);
